@@ -17,7 +17,7 @@ const App = () => (
       />
     </a>
     <Header title="Web" />
-    <div className="card">
+    <div className="card rounded-md border p-4 bg-green-200">
       <Counter />
     </div>
   </div>
