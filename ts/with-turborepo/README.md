@@ -12,10 +12,6 @@ Run the following command:
 npx create-turbo@latest -e with-vite-react
 ```
 
-### Install tailwindcss in `apps/web`
-
-Follow the official [Tailwind CSS installation guide](https://tailwindcss.com/docs/guides/vite) for Vite.
-
 ### Install shadcn-ui in `packages/ui`
 
 Manually install shadcn-ui [shadcn-ui repository](https://ui.shadcn.com/docs/installation/manual).
