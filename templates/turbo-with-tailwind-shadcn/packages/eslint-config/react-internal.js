@@ -7,7 +7,7 @@ import globals from "globals";
 export default defineConfig([
   ...baseConfig,
   pluginReact.configs.flat.recommended,
-  pluginReactHooks.configs.flat["recommended-latest"],
+  pluginReactHooks.configs.flat.recommended,
   {
     languageOptions: {
       ...pluginReact.configs.flat.recommended.languageOptions,
