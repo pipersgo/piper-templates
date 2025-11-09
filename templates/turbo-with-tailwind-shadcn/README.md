@@ -20,8 +20,8 @@ Follow the official [Tailwind CSS installation guide](https://tailwindcss.com/do
 
 Manually install shadcn-ui [shadcn-ui repository](https://ui.shadcn.com/docs/installation/manual).
 
-- add `global.css` to `packages/tailwind-config/shadcn-styles.css`
-  - modify `../tailwind-config/shadcn-styles.css` in `packages/ui/components.json`
+- add `global.css` to `packages/tailwind-config/shared-styles.css`
+  - modify `../tailwind-config/shared-styles.css` in `packages/ui/components.json`
 - add `baseUrl` and `paths` to `packages/ui/tsconfig.json`
 - alias `@repo/ui` to `packages/ui/src` in `packages/ui/components.json`
 
