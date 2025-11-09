@@ -6,6 +6,6 @@
       "@repo/ui/*": ["./src/*"]
     }
   },
-  "include": ["."],
-  "exclude": ["node_modules"]
+  "include": ["./src"],
+  "exclude": ["node_modules", "eslint.config.js"]
 }
