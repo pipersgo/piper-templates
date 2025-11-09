@@ -8,6 +8,9 @@
     "./base": "./base.js",
     "./react-internal": "./react-internal.js"
   },
+  "peerDependencies": {
+    "prettier": "^3.6.2"
+  },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "eslint": "^9.39.1",
