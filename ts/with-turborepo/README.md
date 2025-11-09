@@ -21,11 +21,6 @@ Manually install shadcn-ui [shadcn-ui repository](https://ui.shadcn.com/docs/ins
 - add `baseUrl` and `paths` to `packages/ui/tsconfig.json`
 - alias `@repo/ui` to `packages/ui/src` in `packages/ui/components.json`
 
-### Update `eslint` configuration
-
-- [ESLint v9 Flat Configs](https://turborepo.com/docs/guides/tools/eslint#eslint-v9-flat-configs)
-- [Turborepo ESLint Config](https://github.com/vercel/turborepo/tree/main/examples/basic/packages/eslint-config)
-
 ## What's inside?
 
 This Turborepo includes the following packages and apps:
