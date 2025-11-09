@@ -7,10 +7,10 @@ import { Header, Counter } from "@repo/ui";
 const App = () => (
   <div className="flex flex-col items-center justify-center gap-12 pt-20">
     <div className="flex gap-8">
-      <a href="https://vitejs.dev" target="_blank">
+      <a href="https://vitejs.dev">
         <img src="/vite.svg" className="size-20 rounded-lg" alt="Vite logo" />
       </a>
-      <a href="https://www.typescriptlang.org/" target="_blank">
+      <a href="https://www.typescriptlang.org/">
         <img
           src={typescriptLogo}
           className="size-20 rounded-lg"
