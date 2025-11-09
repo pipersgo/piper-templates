@@ -1,32 +1,80 @@
-# @repo/ui — UI components
+# @repo/ui
 
-This package exports shared UI components used by the example app.
+This package exports shared UI components and shadcn/ui components used across the monorepo.
 
-What this package provides
+## What's inside
 
-- A place to add shadcn/ui components and shared UI primitives.
+- `Counter` — Example counter component
+- `Header` — Example header component
+- `Button` — shadcn/ui button component (in `components/ui/`)
+- Utility functions and hooks (exported via subpath exports)
+- Pre-configured with Tailwind CSS and shadcn/ui dependencies
 
-Using `shadcn/ui`
+## Installation
 
-This monorepo doesn't automatically scaffold shadcn components for you. To add shadcn/ui components into this package:
+### 1. Add to your app's dependencies
 
-1. Follow the shadcn manual installation guide: [Manual Installation](https://ui.shadcn.com/docs/installation/manual)
-2. Add any generated/global styles into the shared Tailwind CSS file at `packages/tailwind-config/shared-styles.css`.
-3. Ensure `packages/ui` can resolve the shared styles and aliases:
-   - Add `baseUrl`/`paths` to `packages/ui/tsconfig.json` if needed.
-   - Use the alias `@repo/ui` in consuming apps (this repo already wires the package with workspaces).
+Add this package to your app's `package.json`:
 
-Example usage in an app:
+```json
+{
+  "dependencies": {
+    "@repo/ui": "workspace:*"
+  }
+}
+```
+
+Then run:
+
+```sh
+pnpm install
+```
+
+## Usage
+
+### Importing components from the main entry
+
+Import components from the main package entry:
 
 ```tsx
-import React from "react";
-import { Header } from "@repo/ui";
+import { Header, Counter } from "@repo/ui";
 
 export default function Page() {
   return (
     <div>
       <Header />
+      <Counter />
     </div>
   );
 }
 ```
+
+### Importing from subpath exports
+
+The package provides subpath exports for direct imports:
+
+```tsx
+// Import specific components
+import { Header } from "@repo/ui/header";
+import { Counter } from "@repo/ui/counter";
+
+// Import shadcn/ui components
+import { Button } from "@repo/ui/components/ui/button";
+
+// Import utilities
+import { cn } from "@repo/ui/lib/utils";
+```
+
+### Adding shadcn/ui components
+
+To add more shadcn/ui components to this package:
+
+1. Follow the [shadcn/ui manual installation guide](https://ui.shadcn.com/docs/installation/manual)
+2. Add components to `src/components/ui/`
+3. Global styles are already configured in `packages/tailwind-config/shared-styles.css`
+4. The package is already configured with necessary dependencies (Radix UI, class-variance-authority, etc.)
+
+## Resources
+
+- [shadcn/ui Documentation](https://ui.shadcn.com)
+- [Radix UI Primitives](https://www.radix-ui.com/primitives)
