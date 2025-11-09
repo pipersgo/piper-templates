@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Button } from "./ui/button";
 
-interface CounterProps extends React.ComponentProps<typeof Button> {}
-export const Counter: React.FC<CounterProps> = (props) => {
+export const Counter: React.FC<React.ComponentProps<typeof Button>> = (
+  props
+) => {
   const [count, setCount] = useState(0);
 
   return (
