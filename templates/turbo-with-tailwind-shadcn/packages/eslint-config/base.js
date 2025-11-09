@@ -5,20 +5,18 @@ import tseslint from "typescript-eslint";
 import turboPlugin from "eslint-plugin-turbo";
 
 export default defineConfig([
-  [
-    js.configs.recommended,
-    eslintConfigPrettier,
-    ...tseslint.configs.recommended,
-    {
-      plugins: {
-        turbo: turboPlugin,
-      },
-      rules: {
-        "turbo/no-undeclared-env-vars": "warn",
-      },
+  js.configs.recommended,
+  eslintConfigPrettier,
+  ...tseslint.configs.recommended,
+  {
+    plugins: {
+      turbo: turboPlugin,
     },
-    {
-      ignores: ["dist/**"],
+    rules: {
+      "turbo/no-undeclared-env-vars": "warn",
     },
-  ],
+  },
+  {
+    ignores: ["dist/**"],
+  },
 ]);
