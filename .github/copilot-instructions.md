@@ -2,147 +2,84 @@
 
 ## Repository Overview
 
-This is a **template collection** repository containing reusable project scaffolds, AI prompts, and GitHub/VS Code automation. Not a single application—each directory is an independent, copy-paste starting point.
+This is a **template collection** repository containing reusable project scaffolds, AI prompts, and automation configurations. Not a single application—each directory is an independent, copy-paste starting point meant to be copied and customized.
 
 **Structure:**
 
 - `ts/with-turborepo/` - Complete Turborepo monorepo template (Vite + React 19 + TypeScript + shadcn/ui)
-- `.github/` - GitHub issue/PR templates (auto-populate forms)
-- `.vscode/` - VS Code snippets and settings
+- `ai/with-awesome-copilot/` - AI prompt templates and instruction files for GitHub Copilot workflows
+- `.github/prompts/` - Repository-level AI prompts (e.g., `create-readme.prompt.md`)
+- `.github/instructions/` - Repository-level instruction files (e.g., `markdown.instructions.md` for MD validation)
+- `.vscode/` - VS Code extension recommendations and settings
 
 ## Turborepo Monorepo Architecture
 
-### Package Manager & Workspace
+**Package Manager:** pnpm v8.15.6 with workspaces. Internal packages use `workspace:*` protocol.
 
-- **pnpm** v8.15.6 with workspaces (`pnpm-workspace.yaml` defines `apps/*` and `packages/*`)
-- All internal packages use `workspace:*` protocol for dependencies
-- Turborepo v2.6.0 orchestrates tasks with caching (see `turbo.json`)
+**Key Commands:**
 
-### Monorepo Structure
+- `pnpm build` - Turborepo builds all packages in topological order
+- `pnpm dev` - Starts all dev servers (persistent, no cache)
+- `pnpm lint` / `pnpm typecheck` - Run across entire workspace
+
+**Monorepo Structure (`ts/with-turborepo/`):**
 
 ```
-ts/with-turborepo/
-├── apps/with-vite-react/      # React 19 + Vite app (consumes shared packages)
-└── packages/
-    ├── ui/                     # Shared React components (shadcn/ui + custom)
-    ├── eslint-config/          # ESLint v9 flat configs
-    ├── typescript-config/      # TypeScript configs (base, react-library, vite)
-    └── tailwind-config/        # Tailwind v4 + shadcn design tokens
+apps/with-vite-react/      # React 19 + Vite app
+packages/
+  ui/                      # Shared components (shadcn/ui)
+  eslint-config/           # ESLint v9 flat configs
+  typescript-config/       # TypeScript presets
+  tailwind-config/         # Tailwind v4 design tokens
 ```
 
-### Critical Workflows
+**Critical Patterns:**
 
-**Build:**
+1. **Shared Packages** - All use `workspace:*` protocol and export composable configs
 
-```bash
-pnpm build  # Runs `turbo run build` - respects ^build dependencies
-```
+   - `@repo/ui` - shadcn/ui components with subpath exports (`@repo/ui/components/ui/button`)
+   - `@repo/eslint-config` - Composable flat configs (`base.js`, `react-internal.js`)
+   - `@repo/typescript-config` - Strict presets (`base.json`, `react-library.json`, `vite.json`)
+   - `@repo/tailwind-config` - Tailwind v4 with OKLCH tokens in `shared-styles.css`
 
-- Turborepo executes packages in topological order
-- Outputs: `dist/**` (configured in `turbo.json`)
-- Apps typecheck + build (e.g., `tsc && vite build`)
+2. **Tailwind v4 Scanning** - Apps import `shared-styles.css` with `@source` directive pointing to `../../../packages/ui/src/**/*.{ts,tsx}` for cross-package class scanning
 
-**Dev:**
+3. **shadcn/ui** - Manual installation (no CLI), components in `packages/ui/src/components/ui/`, use `cn()` utility for conditional classes
 
-```bash
-pnpm dev    # Starts all dev servers (persistent, no cache)
-```
+4. **ESLint v9** - Flat config pattern: import shared configs and spread in `eslint.config.js`
 
-- Apps run on Vite dev server (`--clearScreen false` to reduce noise)
-- Changes to `@repo/*` packages hot-reload via Vite's HMR
+5. **TypeScript** - No project references (Turborepo handles build order), `noEmit: true` in apps
 
-**Lint/Typecheck:**
+## AI Workflow Tools
 
-```bash
-pnpm lint       # ESLint v9 flat config across workspace
-pnpm typecheck  # TypeScript with project references
-```
+**Prompts (`.github/prompts/`)** - Repository-level AI prompts for tasks like README generation
 
-### Shared Package Conventions
+- Usage: `@workspace follow instructions in .github/prompts/create-readme.prompt.md`
 
-#### `@repo/ui` - Component Library
+**Instructions (`.github/instructions/`)** - Auto-applying rules for file types (e.g., `markdown.instructions.md` for all `**/*.md`)
 
-- **Exports:** Granular subpath exports (`package.json` exports field)
-  - Main: `import { Header, Counter } from "@repo/ui"`
-  - Subpath: `import { Button } from "@repo/ui/components/ui/button"`
-- **shadcn/ui integration:** Components in `src/components/ui/` follow manual installation pattern
-- **Styling:** Uses `cn()` utility (`@repo/ui/lib/utils`) for conditional classes (clsx + tailwind-merge)
+**Templates (`ai/with-awesome-copilot/`)** - Copy-paste prompt/instruction templates for your own projects
 
-#### `@repo/eslint-config` - ESLint v9 Flat Configs
+## Key Decisions
 
-- **Key pattern:** Export composable config arrays from `.js` files
-  - `base.js` - TypeScript + Prettier + turbo plugin
-  - `react-internal.js` - Adds React/React Hooks rules
-- **Usage:** `import baseConfig from "@repo/eslint-config/base"` then spread in `eslint.config.js`
-- **Plugin:** `eslint-plugin-turbo` enforces undeclared env vars
+- **ESLint v9 flat config** - No cascading `.eslintrc` files
+- **Tailwind v4** - Native CSS layers, no PostCSS
+- **Subpath exports** - Tree-shaking friendly
+- **OKLCH colors** - Better perceptual uniformity
 
-#### `@repo/typescript-config` - TypeScript Presets
+## Template Usage Philosophy
 
-- **Strict by default:** `strict: true`, ESNext modules, Bundler resolution
-- **Configs:**
-  - `base.json` - Core strict settings
-  - `react-library.json` - Extends base + `jsx: "react-jsx"`
-  - `vite.json` - Extends base + DOM types, `noEmit: true`
-- **Usage:** `"extends": "@repo/typescript-config/vite.json"` in app `tsconfig.json`
+**Critical: This is NOT a library or framework.** Templates are designed to be:
 
-#### `@repo/tailwind-config` - Design System
+1. **Copied** - Use `cp -r ts/with-turborepo my-project` not git clone/submodules
+2. **Customized** - Delete unused packages, modify configs, adapt to needs
+3. **Owned** - Once copied, it's the user's code to evolve independently
 
-- **Tailwind v4** with `@tailwindcss/vite` plugin
-- **Critical pattern:** Apps import `shared-styles.css` which defines:
-  - CSS custom properties for shadcn/ui tokens (light/dark themes via OKLCH)
-  - `@source` directive pointing to `../../../packages/ui/src/**/*.{ts,tsx}` for cross-package class scanning
-- **Dark mode:** Custom variant `@custom-variant dark (&:is(.dark *))` in CSS
+When helping users:
 
-### Adding New Components
-
-**shadcn/ui components:**
-
-1. Add to `packages/ui/src/components/ui/` (manual installation, no CLI)
-2. Import primitives (@radix-ui) + `class-variance-authority` for variants
-3. Use `cn()` utility for conditional classes
-4. Export via `packages/ui/src/components/index.ts` or subpath
-5. Styles auto-scanned via `@source` in consuming apps' CSS
-
-**Custom components:**
-
-- Use React 19 patterns (no legacy FC types, prefer `React.ComponentProps<typeof X>`)
-- Example: `Counter` wraps `Button` with state (`useState`)
-
-### Configuration Conventions
-
-**ESLint (v9 flat config):**
-
-- Root `eslint.config.js` imports shared config and exports directly
-- Ignores: `dist/**` in all packages
-
-**TypeScript:**
-
-- Project references NOT used (Turborepo handles build order)
-- `include: ["src"]` in most packages
-- `noEmit: true` in apps (Vite handles bundling)
-
-**Vite:**
-
-- React plugin + Tailwind v4 Vite plugin
-- Imports `style.css` from `src/main.tsx` (contains `@import "@repo/tailwind-config"`)
-
-## AI Prompt Templates (Manual Use)
-
-Located in `ai/github/templates/` - these are NOT automated. Copy, fill placeholders (`<language>`, `<files>`), paste into AI tools:
-
-- `pull_request_prompt.md` - Generate PR descriptions
-- `code_review_prompt.md` - AI-assisted reviews
-- `refactor_prompt.md` - Refactoring requests
-- `test_generation_prompt.md` - Generate tests
-
-## Key Decision Rationale
-
-1. **ESLint v9 flat config:** Modern approach, no cascading `.eslintrc` files
-2. **Tailwind v4:** Uses native CSS layers, no PostCSS config needed
-3. **pnpm workspaces:** Fast, efficient with Turborepo
-4. **Subpath exports:** Granular imports reduce bundle size (tree-shaking friendly)
-5. **OKLCH color space:** Better perceptual uniformity for design tokens
-6. **React 19:** Early adoption for testing new features
+- Recommend copying relevant template directories, not referencing them
+- Suggest removing unused parts (e.g., drop `@repo/ui` if not needed)
+- Avoid treating templates as "upstream" dependencies to track
 
 ## Common Pitfalls
 
@@ -150,7 +87,11 @@ Located in `ai/github/templates/` - these are NOT automated. Copy, fill placehol
 - **ESLint imports:** Use `workspace:*` protocol, not relative paths, for shared configs
 - **Turborepo caching:** `dev` task has `cache: false` and `persistent: true` - don't cache long-running servers
 - **TypeScript paths:** No path aliases configured - rely on package names (`@repo/ui`)
+- **AI instruction scope:** `.github/instructions/markdown.instructions.md` has blog-specific validation fields (post_title, categories) - these are examples, not universal requirements
 
 ## License & Attribution
 
-MIT License - templates meant for copy/modification. Based on Turborepo community example `with-vite-react` v2.6.0.
+MIT License - templates meant for copy/modification. Based on:
+
+- Turborepo community example `with-vite-react` v2.6.0
+- GitHub's awesome-copilot project (prompts/instructions)
