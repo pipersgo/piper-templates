@@ -71,4 +71,4 @@ BREAKING CHANGE: ESLint v8 configs incompatible. Migrate to flat config.
 Closes #34
 ```
 
-Commit focused changes, run `pnpm lint`/`pnpm typecheck` first, link issues, review diffs before committing.
+Commit focused changes. Run `pnpm lint`/`pnpm typecheck` first, link issues, and review diffs before committing.
