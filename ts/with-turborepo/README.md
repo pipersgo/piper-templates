@@ -22,6 +22,7 @@ pnpm dev
 ### Apps
 
 - [`with-vite-react`](./apps/with-vite-react/README.md) — React 19 + Vite + TypeScript app
+- [`with-vite-react-storybook`](./apps/with-vite-react-storybook/README.md) — Storybook workspace for UI component development
 
 ### Packages
 
@@ -37,3 +38,4 @@ pnpm dev
 - `pnpm lint` — Lint all packages
 - `pnpm format` — Format with Prettier
 - `pnpm typecheck` — Type check TypeScript
+- `pnpm storybook` — Start Storybook dev server
