@@ -1,0 +1,12 @@
+{
+  // Recommended extensions for this template repository
+  "recommendations": [
+    // ts
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "dbaeumer.vscode-eslint",
+    // utility
+    "GitHub.copilot",
+    "usernamehw.errorlens",
+  ]
+}
