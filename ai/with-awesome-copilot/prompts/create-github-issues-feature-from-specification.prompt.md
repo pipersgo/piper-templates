@@ -3,12 +3,18 @@
 # The following file was used from that project:
 #  prompts/create-github-pull-request-from-specification.prompt.md
 #
-# Copyright GitHub, Inc.
+# Original Copyright GitHub, Inc.
 # See ThirdPartyNotices.txt for license details.
-mode: 'agent'
-description: 'Create GitHub Issue for feature request from specification file using feature_request.yml template.'
-tools: ['search/codebase', 'search', 'github', 'create_issue', 'search_issues', 'update_issue']
+# Modified by pipersgo, 2025.
+mode: "agent"
+description: "Create GitHub Issue for feature request from specification file using feature_request.yml template."
+tools:
+  - search
+  - github/github-mcp-server/issue_read
+  - github/github-mcp-server/issue_write
+  - github/github-mcp-server/search_issues
 ---
+
 # Create GitHub Issue from Specification
 
 Create GitHub Issue for the specification at `${file}`.
