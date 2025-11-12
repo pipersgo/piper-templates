@@ -4,16 +4,22 @@ Template for customizing GitHub Copilot commit message generation in VS Code usi
 
 ## What's Included
 
+### Github Copilot Tools
+
 - `copilot-commit-message-instructions.md` - Condensed guidelines for generating conventional commit messages
+- `prompts/` - Folder containing additional prompt templates for various AI tools
+  - `update-github-feat-issue.prompt.md` - Prompt for updating GitHub issues with new features
+
+### Github Issues And PRs
+
+- `pull-request-template.md` - Template for pull requests
+- `ISSUE_TEMPLATE/` - Folder containing issue templates
+  - `bug-report.md` - Template for reporting bugs
+  - `feature-request.md` - Template for requesting new features
 
 ## Usage in VS Code
 
 Configure VS Code to use these instructions for commit message generation:
-
-1. Open VS Code Settings (`Ctrl+,` or `Cmd+,`)
-2. Search for `github.copilot.chat.commitMessageGeneration.instructions`
-3. Click **Edit in settings.json**
-4. Add the following configuration:
 
 ```json
 {
@@ -23,15 +29,9 @@ Configure VS Code to use these instructions for commit message generation:
 }
 ```
 
+To automate github issue and PR creation, you need to integrate Github MCP server you can integrate it with vscode extension.
+
 > **Note:** Adjust the file path relative to your workspace root. If you copied this template to your project's `.github/` directory, use the path shown above.
-
-## Customization
-
-The template uses generic scope examples (`ui`, `vite-react`, `pnpm`). Adapt these to match your project structure:
-
-- Update scope guidance to reflect your packages/modules
-- Adjust examples to match your workflow
-- Add project-specific commit types if needed
 
 ## How It Works
 

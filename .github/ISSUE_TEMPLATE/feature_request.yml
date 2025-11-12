@@ -1,36 +1,45 @@
-name: ✨ Feature Request
-description: Suggest a new feature or enhancement for piper-templates
-title: "[Feature]: "
+name: "🚀 Feature Request"
+description: Suggest a new feature or improvement
+title: "feat: "
 labels: ["feat"]
+assignees: []
+
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Thanks for suggesting a feature! Please fill out the form below to help us understand your request.
-
-  - type: input
-    id: template-area
-    attributes:
-      label: Which template would this feature affect?
-      description: Enter the template path (e.g., ts/with-turborepo, ai/with-awesome-copilot) or "new template" for proposals
-      placeholder: "ts/with-turborepo"
-    validations:
-      required: true
-
   - type: textarea
     id: description
     attributes:
-      label: Feature Description
-      description: Describe the feature you'd like to see
-      placeholder: What would you like to add or change?
+      label: "Description"
+      description: "Clearly describe the feature or improvement you'd like to see."
+      placeholder: "e.g., Add dark mode support to the dashboard."
     validations:
       required: true
 
   - type: textarea
-    id: additional
+    id: motivation
     attributes:
-      label: Additional Context
-      description: Add any other context, examples, or screenshots
-      placeholder: Links to similar features, code examples, mockups, etc.
+      label: "Motivation / Use Case"
+      description: "Explain why this feature is needed or what problem it solves."
+      placeholder: "e.g., Dark mode would improve usability at night."
+    validations:
+      required: false
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: "Proposed Tasks / To-Do List"
+      description: "Outline the steps or tasks required to implement this feature."
+      placeholder: |
+        - [ ] Add toggle in settings
+        - [ ] Implement dark theme CSS
+        - [ ] Save theme preference in user profile
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: "Additional Context"
+      description: "Include any alternatives considered, related issues, screenshots, or references."
+      placeholder: "e.g., Similar implementation in another app, or links to related issues."
     validations:
       required: false

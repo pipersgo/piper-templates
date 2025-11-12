@@ -16,10 +16,15 @@ A curated collection of production-ready templates, AI prompts, and automation t
 
 ### AI Tools
 
-| Template                                              | Description                                                                                                                                                                                              |
-| ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **[with-awesome-copilot](./ai/with-awesome-copilot)** | AI-powered prompts and instructions for GitHub Copilot. Includes README generation, code review templates, and markdown documentation standards. Copy and customize for your AI-assisted workflows.      |
-| **[with-github-copilot](./ai/with-github-copilot)**   | Conventional commit message instructions for GitHub Copilot. Optimized template for consistent, well-structured commit messages following Conventional Commits standard. Configure via VS Code settings. |
+| Template                                              | Description                                                                                                                                                                                         |
+| ----------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **[with-awesome-copilot](./ai/with-awesome-copilot)** | AI-powered prompts and instructions for GitHub Copilot. Includes README generation, code review templates, and markdown documentation standards. Copy and customize for your AI-assisted workflows. |
+
+### GitHub Copilot
+
+| Template                | Description                                                                                                                                                                                              |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **[.github](./github)** | Conventional commit message instructions for GitHub Copilot. Optimized template for consistent, well-structured commit messages following Conventional Commits standard. Configure via VS Code settings. |
 
 > [!TIP]
 > Don't try to use all templates at once. Pick the one that matches your current need, copy it, and build from there.
