@@ -49,7 +49,7 @@ labels: ["feat"]
 assignees: []
 ```
 
-Template location: `.github/ISSUE_TEMPLATE/feature-request.yml`
+Template location: `.github/ISSUE_TEMPLATE/feature_request.yml`
 
 ### 4. Reformat Issue Body
 
