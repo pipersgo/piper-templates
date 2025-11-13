@@ -1,6 +1,7 @@
 ---
-mode: "agent"
+agent: "agent"
 description: "Update Existing GitHub Issue to Match Feature Request Template"
+argument-hint: issue
 tools:
   - search
   - github/github-mcp-server/search_issues
@@ -10,33 +11,35 @@ tools:
 
 # Update GitHub Issue (Feature Request Only)
 
-Reformat and review an existing GitHub issue ${input:issue_number:Issue number on GitHub} to match the **🚀 Feature Request** template (`.github/ISSUE_TEMPLATE/feature_request.yml`).
+Reformat an existing GitHub issue to match the **Feature Request** template structure and guidelines.
 
-## Steps
+## Process
 
 ### 1. Verify Issue
 
-- Use #github/github-mcp-server/search_issues to confirm the issue exists.
-- If it does **not** exist, stop immediately (do not create a new issue).
-- If inaccessible, return:
+Confirm the issue exists and is accessible.
+
+- Use #tool:github/github-mcp-server/search_issues to verify the issue exists.
+- Stop immediately if the issue does not exist or is inaccessible.
+- Return error if access fails:
 
 ```
-Error: Could not access issue ${input:issue_number:Issue number on GitHub}. No changes made.
+Error: Could not access issue ${input:issue}. No changes made.
 ```
 
-### 2. Read Existing Issue
+### 2. Read Issue Content
 
-- Retrieve the issue’s title, body, and metadata using #github/github-mcp-server/issue_read .
-- Extract all text content, paying attention to user-provided details that describe:
-- The feature being requested.
-- The problem or motivation behind it.
-- Any steps, ideas, or implementation notes.
-- Extra references, images, or links.
+Extract the issue's title, body, and metadata.
 
-### 3. Select Template
+- Use #tool:github/github-mcp-server/issue_read to retrieve full details.
+- Note the feature request, problem statement, motivation, and any implementation ideas.
+- Preserve references, links, and user context.
 
-- Always use: `.github/ISSUE_TEMPLATE/feature-request.yml`
-- Template Metadata:
+### 3. Reference Template
+
+Use the Feature Request template as the target structure.
+
+Template metadata:
 
 ```yaml
 name: "🚀 Feature Request"
@@ -46,39 +49,45 @@ labels: ["feat"]
 assignees: []
 ```
 
-### 4. Reformat the Issue Body
+Template location: `.github/ISSUE_TEMPLATE/feature-request.yml`
 
-Rebuild the issue body strictly following the `feature_request.yml` structure.
-Use the existing issue content to fill each section as accurately as possible.
+### 4. Reformat Issue Body
 
-For each section (`Description`, `Motivation / Use Case`, `Proposed Tasks / To-Do List`, `Additional Context`):
+Map the existing issue content to the template structure.
 
-- Follow the **template’s description and placeholder text** closely as guidance for what belongs in that section.
-- Use the **author’s original text** when possible, reorganizing or summarizing only for clarity.
-- When information is missing, use the **template’s placeholder** as a fallback example or mark as `N/A`.
-- Preserve the **format, order, and headings** exactly as defined in the template.
+For each template section (`Description`, `Motivation / Use Case`, `Proposed Tasks / To-Do List`, `Additional Context`):
+
+- Use the author's original text where available, reorganizing only for clarity.
+- Follow the template's placeholder text as guidance for section content.
+- Mark missing information as `N/A` or use template placeholders.
+- Preserve the exact section headings and order from the template.
 
 Example:
 
 ```
 ### Description
-[Extracted or summarized feature details; if none, use template placeholder or N/A]
+[Extracted or summarized feature details; if none, use N/A]
 ```
 
-### 5. Update the Title
+### 5. Update Title
 
-- If the current title already starts with `feat:` or is descriptive, keep it.
-- Otherwise, prepend `feat:` and rephrase for clarity (≤15 words).
-  Example:
+Ensure the title clearly describes the feature and uses the `feat:` prefix.
 
-  ```
-  Original: Add customization for notifications
-  Updated: feat: Add notification customization options
-  ```
+- Keep existing title if it already starts with `feat:` and is descriptive.
+- Otherwise, prepend `feat:` and keep the title under 15 words.
+
+Example:
+
+```
+Before: Add customization for notifications
+After:  feat: Add notification customization options
+```
 
 ### 6. Write Updated Issue
 
-- Use #github/github-mcp-server/issue_write to replace the issue’s **body** and/or **title** with the reformatted version.
+Apply changes to the GitHub issue using the reformatted content.
+
+Use #tool:github/github-mcp-server/issue_write to update the issue's **title** and **body**.
 
 ## Output
 
@@ -86,12 +95,10 @@ Return the major changes made.
 
 ## Rules
 
-- Only modify **existing issues** — never create new ones.
-- Follow the **feature_request template** structure exactly.
-- Keep titles short, descriptive, and prefixed with `feat:`.
-- Preserve author tone and factual content.
-- Avoid adding commentary or reviews — only reformat for structure and clarity.
-- Keep the author’s original writing style and sentiment.
-- Improve readability and structure only where needed.
-- Do **not** change intent or meaning.
-- Minor grammar and formatting fixes are acceptable.
+- Only modify existing issues — never create new ones.
+- Follow the template structure exactly.
+- Keep titles concise, descriptive, and prefixed with `feat:`.
+- Preserve author tone and factual content without alteration.
+- Avoid adding commentary or reviews — only reformat for structure.
+- Do not change intent or meaning.
+- Grammar and formatting fixes are acceptable.
