@@ -1,50 +1,59 @@
-# GitHub Copilot Custom Instructions Template
+# GitHub Templates & Copilot Instructions
 
-Template for customizing GitHub Copilot commit message generation in VS Code using Conventional Commits standard.
+This folder contains GitHub templates and Copilot instruction files intended to be copied into a project's `.github/` directory. Use the files to standardize pull requests, issues, and AI-generated content such as commit messages.
 
-## What's Included
+## Contents
 
-### Github Copilot Tools
+- `copilot-commit-message-instructions.md`: Guidance used by Copilot or other AI tools to generate commit messages (Conventional Commits friendly).
+- `copilot-instructions.md`: General Copilot customization and usage guidance.
+- `pull_request_template.md`: Pull request template that populates new PR descriptions in the GitHub UI.
+- `prompts/`: Prompt templates for AI tasks. Notable prompts:
+  - `create-pr.prompt.md`
+  - `update-issue-feat.prompt.md`
+  - `update-readme.prompt.md`
+- `instructions/`: Instruction files applied automatically by repository tooling (for example, `markdown.instructions.md`).
+- `ISSUE_TEMPLATE/`: Issue templates used by GitHub when opening new issues:
+  - `bug_report.yml`
+  - `feature_request.yml`
 
-- `copilot-commit-message-instructions.md` - Condensed guidelines for generating conventional commit messages
-- `prompts/` - Folder containing additional prompt templates for various AI tools
-  - `update-github-feat-issue.prompt.md` - Prompt for updating GitHub issues with new features
+## How to Use
 
-### Github Issues And PRs
+1. **Copy this folder**
 
-- `pull-request-template.md` - Template for pull requests
-- `ISSUE_TEMPLATE/` - Folder containing issue templates
-  - `bug-report.md` - Template for reporting bugs
-  - `feature-request.md` - Template for requesting new features
+   Copy this folder into a repository's `.github/` directory to enable the templates and instructions.
 
-## Usage in VS Code
+2. **Install the GitHub MCP server**
 
-Configure VS Code to use these instructions for commit message generation:
+   Install and configure the GitHub MCP server so compatible AI tools can read these templates and instructions.
 
-```json
-{
-  "github.copilot.chat.commitMessageGeneration.instructions": [
-    { "file": ".github/copilot-commit-message-instructions.md" }
-  ]
-}
-```
+3. **Integrate with VS Code (Copilot)**
 
-To automate github issue and PR creation, you need to integrate Github MCP server you can integrate it with vscode extension.
+   Point Copilot/VS Code settings at the Copilot instruction files. Example setting:
 
-> **Note:** Adjust the file path relative to your workspace root. If you copied this template to your project's `.github/` directory, use the path shown above.
+   ```jsonc
+   // filepath: .vscode/settings.json
+   {
+     "github.copilot.chat.commitMessageGeneration.instructions": [
+       { "file": ".github/copilot-commit-message-instructions.md" }
+     ]
+   }
+   ```
 
-## How It Works
+4. **Use GitHub templates**
 
-When configured via settings, VS Code automatically includes these instructions when:
+   Files in `.github/` and `.github/ISSUE_TEMPLATE/` are automatically used by GitHub when creating pull requests and issues.
 
-- Using the **Source Control** view's sparkle icon to generate commit messages
-- Asking Copilot Chat to generate commit messages
-- Using the `Git: Commit Staged (AI Generated)` command
+5. **Use prompts and automation**
 
-The instructions ensure consistent, well-structured commit messages following your team's conventions.
+   Prompt files in `prompts/` are ready to be used as input to Copilot Chat, other AI tools, or automation scripts/workflows.
 
-## Resources
+## Recommendations
 
-- [VS Code Custom Instructions Documentation](https://code.visualstudio.com/docs/copilot/customization/custom-instructions#_specify-custom-instructions-in-settings)
-- [Conventional Commits Specification](https://www.conventionalcommits.org/)
-- [Awesome Copilot Templates](https://github.com/github/awesome-copilot)
+- **Adjust paths:** Keep file paths relative to the repository root when configuring editors or automation.
+- **Customize templates:** Update the templates to match the project's contributing and commit message conventions before broad use.
+- **Use CI/workflows:** Consider adding CI steps or repository workflows that validate commit messages or apply templates automatically.
+
+## References
+
+- VS Code custom instructions documentation: https://code.visualstudio.com/docs/copilot/customization/custom-instructions#_specify-custom-instructions-in-settings
+- Conventional Commits: https://www.conventionalcommits.org/
