@@ -1,12 +1,13 @@
 ---
-mode: "agent"
+agent: "agent"
 description: "Update documentation Markdown files for clarity and structure"
+argument-hint: doc
 tools: ["edit", "search", "fetch"]
 ---
 
 ## Purpose
 
-Enhance the clarity, readability, and structure of ${input:file} while avoiding unnecessary visuals or verbose language.
+Enhance the clarity, readability, and structure of ${input:doc} while avoiding unnecessary visuals or verbose language.
 
 ## Objectives
 
