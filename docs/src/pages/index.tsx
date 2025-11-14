@@ -10,12 +10,12 @@ export default function Home(): ReactNode {
   return (
     <Layout>
       <header className={clsx("hero hero--primary")}>
-        <div className="container">
-          <Heading as="h1" className="hero__title">
+        <div className="container flex flex-col items-center justify-center">
+          <Heading as="h1" className={clsx("hero__title")}>
             {siteConfig.title}
           </Heading>
           <p className="hero__subtitle">{siteConfig.tagline}</p>
-          <button>
+          <button className="rounded-lg p-2 font-bold border-none">
             <Link to="/docs/get-started">Get Started</Link>
           </button>
         </div>

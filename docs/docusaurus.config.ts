@@ -5,6 +5,7 @@ import type * as Preset from "@docusaurus/preset-classic";
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
+  plugins: ["./src/plugins/plugin-tailwind.ts"],
   title: "Piper Templates",
   tagline: "By PipersGo",
   favicon: "img/favicon.ico",
