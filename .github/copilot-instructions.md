@@ -11,6 +11,7 @@ This repository is a template collection containing reusable project scaffolds, 
 - `.github/prompts/` – Repository-level prompts for tasks such as README or PR generation.
 - `.github/instructions/` – Auto-applied instructions by file type (for example, Markdown rules).
 - `.vscode/` – Editor settings and recommended extensions for working with the templates.
+- `docs/` – Documentation for using the template repository. `docs` is the root for a Docusaurus site. `docs/docs` contains the actual documentation files.
 
 When assisting in this repository, treat each template folder as a standalone starter project and avoid coupling changes across templates unless explicitly requested.
 

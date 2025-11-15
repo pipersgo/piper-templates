@@ -6,6 +6,10 @@
 
 A curated collection of production-ready templates, AI prompts, and automation tools for modern web development. Each template is an independent starting point you can copy, customize, and make your own.
 
+## Documentation
+
+For detailed guides, setup instructions, and best practices, visit the [Piper Templates documentation](https://pipersgo.github.io/piper-templates).
+
 ## Templates
 
 ### TypeScript
