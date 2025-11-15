@@ -1,5 +1,0 @@
-{
-  "plugins": ["prettier-plugin-tailwindcss"],
-  "tailwindStylesheet": "./packages/tailwind-config/shared-styles.css",
-  "tailwindFunctions": ["clsx", "cn", "cva"]
-}
