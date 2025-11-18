@@ -16,6 +16,8 @@ pnpm start
 
 This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
+The site is available locally at `http://localhost:9001/piper-templates/`.
+
 ## Build
 
 ```bash
