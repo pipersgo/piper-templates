@@ -9,27 +9,56 @@
 
 @custom-variant dark (&:is([data-theme="dark"] *));
 
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #3798c4;
-  --ifm-color-primary-dark: #23769b;
-  --ifm-color-primary-darker: #145573;
-  --ifm-color-primary-darkest: #09354a;
-  --ifm-color-primary-light: #50bced;
-  --ifm-color-primary-lighter: #88dafe;
-  --ifm-color-primary-lightest: #bbeaff;
+  --ifm-color-primary: #dc3e3e;
+  --ifm-color-primary-dark: #e15959;
+  --ifm-color-primary-darker: #e57373;
+  --ifm-color-primary-darkest: #ea8e8e;
+  --ifm-color-primary-light: #d42727;
+  --ifm-color-primary-lighter: #b92222;
+  --ifm-color-primary-lightest: #9f1d1d;
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-highlighted-code-line-bg: #ffe1cc;
+  --ifm-navbar-background-color: #fff5ee;
+  --ifm-background-color: #fff5ee;
+  --ifm-color-content: #28589d;
+  --ifm-color-content-secondary: #1164b4;
+  --ifm-menu-color: #1164b4;
+  --ifm-code-background: #fffafa;
+}
+
+[class*="codeBlockContainer"] {
+  background-color: #fffafa;
+  color: #28589d;
+}
+
+[class*="codeBlockContent"] pre {
+  background-color: #fffafa !important;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme="dark"] {
-  --ifm-color-primary: #50bced;
-  --ifm-color-primary-dark: #3798c4;
-  --ifm-color-primary-darker: #23769b;
-  --ifm-color-primary-darkest: #145573;
-  --ifm-color-primary-light: #88dafe;
-  --ifm-color-primary-lighter: #bbeaff;
-  --ifm-color-primary-lightest: #eef9ff;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #89cff0;
+  --ifm-color-primary-dark: #72c6ed;
+  --ifm-color-primary-darker: #5abcea;
+  --ifm-color-primary-darkest: #42b2e6;
+  --ifm-color-primary-light: #92d3f1;
+  --ifm-color-primary-lighter: #9ad6f2;
+  --ifm-color-primary-lightest: #a3daf3;
+  --docusaurus-highlighted-code-line-bg: #555d50;
+  --ifm-navbar-background-color: #36454f;
+  --ifm-background-color: #36454f;
+  --ifm-color-content: #fff5ee;
+  --ifm-color-content-secondary: #fffafa;
+  --ifm-menu-color: #fffafa;
+  --ifm-code-background: #414a4c;
+}
+
+[data-theme="dark"] [class*="codeBlockContainer"] {
+  background-color: #414a4c;
+  color: #fff5ee;
+}
+
+[data-theme="dark"] [class*="codeBlockContent"] pre {
+  background-color: #414a4c !important;
 }
