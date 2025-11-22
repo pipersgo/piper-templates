@@ -1,12 +1,12 @@
-name: 🐛 Bug Report
-description: Report a bug or unexpected behavior in piper-templates
-title: "[Bug]: "
+name: "🐛 Bug Report"
+description: Report a bug or unexpected behavior
+title: "fix: "
 labels: ["fix"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to report a bug! Please fill out the form below to help us investigate.
+        Thank you for reporting this bug. Please provide details to help us investigate and resolve the issue.
 
   - type: input
     id: template-area
@@ -20,60 +20,60 @@ body:
   - type: textarea
     id: description
     attributes:
-      label: Bug Description
-      description: A clear and concise description of what the bug is
-      placeholder: Tell us what went wrong
+      label: "Description"
+      description: "Clearly describe what the bug is and how it manifests."
+      placeholder: "e.g., Build fails with TypeScript error when running pnpm build."
     validations:
       required: true
 
   - type: textarea
     id: reproduction
     attributes:
-      label: Steps to Reproduce
-      description: Steps to reproduce the behavior
+      label: "Steps to Reproduce"
+      description: "Provide steps to reproduce the bug."
       placeholder: |
-        1. Copy template '...'
-        2. Run command '...'
-        3. See error
+        1. Copy template from ts/with-turborepo
+        2. Run `pnpm install`
+        3. Run `pnpm build`
+        4. Observe the error
     validations:
       required: true
 
   - type: textarea
     id: expected
     attributes:
-      label: Expected Behavior
-      description: What did you expect to happen?
-      placeholder: Describe the expected behavior
+      label: "Expected Behavior"
+      description: "Describe what should happen."
+      placeholder: "e.g., Build should complete without errors."
     validations:
       required: true
 
   - type: textarea
     id: actual
     attributes:
-      label: Actual Behavior
-      description: What actually happened?
-      placeholder: Describe what actually happened
+      label: "Actual Behavior"
+      description: "Describe what actually occurs."
+      placeholder: "e.g., Build fails with 'Type not found' error."
     validations:
       required: true
 
   - type: textarea
     id: environment
     attributes:
-      label: Environment
-      description: Please provide relevant environment details
+      label: "Environment"
+      description: "Provide relevant system and tool versions."
       placeholder: |
-        - OS: [e.g., Ubuntu 24.04]
-        - Node version: [e.g., 20.11.0]
-        - pnpm version: [e.g., 8.15.6]
-        - Package versions: [if relevant]
+        - OS: Ubuntu 24.04
+        - Node: 20.11.0
+        - pnpm: 8.15.6
     validations:
       required: false
 
   - type: textarea
     id: logs
     attributes:
-      label: Error Logs
-      description: If applicable, paste any error logs or output
+      label: "Error Logs"
+      description: "Paste any error messages or terminal output."
       render: shell
     validations:
       required: false
@@ -81,8 +81,8 @@ body:
   - type: textarea
     id: additional
     attributes:
-      label: Additional Context
-      description: Add any other context about the problem here
-      placeholder: Screenshots, links, references, etc.
+      label: "Additional Context"
+      description: "Include any references, links, or other relevant information."
+      placeholder: "e.g., Related issue, similar behavior, workaround."
     validations:
       required: false
