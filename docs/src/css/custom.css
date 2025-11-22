@@ -8,6 +8,7 @@
 @import "tailwindcss/utilities.css" layer(utilities);
 
 @custom-variant dark (&:is([data-theme="dark"] *));
+@import url("https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 :root {
   --ifm-color-primary: #dc3e3e;
@@ -25,6 +26,39 @@
   --ifm-color-content-secondary: #1164b4;
   --ifm-menu-color: #1164b4;
   --ifm-code-background: #fffafa;
+  --ifm-font-family-base: "Comic Relief", Roboto, system-ui, -apple-system,
+    Segoe UI, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont,
+    "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol";
+  --ifm-font-family-monospace: "Space Mono", SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.markdown h1:first-child {
+  font-size: 2.25rem;
+  line-height: calc(2.5 / 2.25);
+  letter-spacing: -0.025rem;
+  font-weight: 800;
+}
+
+.markdown > h2 {
+  font-size: 1.875rem;
+  line-height: calc(2.25 / 1.875);
+  letter-spacing: -0.025rem;
+  font-weight: 600;
+}
+
+.markdown > h3 {
+  font-size: 1.5rem;
+  line-height: calc(2 / 1.5);
+  letter-spacing: -0.025rem;
+  font-weight: 600;
+}
+
+.markdown > h4 {
+  font-size: 1.25rem;
+  line-height: calc(1.75 / 1.25);
+  font-weight: 600;
 }
 
 [class*="codeBlockContainer"] {
