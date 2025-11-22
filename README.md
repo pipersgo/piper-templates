@@ -1,6 +1,16 @@
-# Piper Templates
+<div align="center">
+<a href="https://pipersgo.github.io/piper-templates">
+<img src="./docs/static/img/header-table.png" alt="Piper Templates Header Table" />
+</a>
+</div>
+
+<div align="center">
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
+
+</div>
+
+# Piper Templates
 
 ⭐ If you like this project, star it on GitHub — it helps a lot!
 
